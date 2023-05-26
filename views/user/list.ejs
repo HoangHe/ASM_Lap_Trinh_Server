@@ -1,0 +1,165 @@
+<%- include('../inc/top') %>
+
+
+    <!-- Chức Năng Chính -->
+    <div class="d-flex justify-content-between content fixed-top mt-5 align-items-center"
+        style="background-color: #F5F5F5; min-height: 70px;">
+        <div class="ms-2 d-flex align-items-center">
+            <h5 class="m-2">
+                <%= title %>
+            </h5>
+            <span class="ms-3 text-success fw-bold" class="alert alert-success" role="alert">
+                <%= msg %>
+            </span>
+        </div>
+        <div class="me-5 d-flex justify-content-end align-items-center">
+
+            <div class="input-group me-3 d-flex" style="max-height: 40px;">
+                <input type="text" class="form-control" aria-label="Text input with segmented dropdown button"
+                    placeholder="Tìm Kiếm..." id="floatingInput" style="min-width: 50%;">
+                <div class="d-flex">
+                    <label class="input-group-text" type="button"
+                        style="border-bottom-left-radius: 0; border-top-left-radius: 0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group d-flex" style="max-height: 40px;">
+                <select class="form-select" id="filterGroup1" style="min-width: 50%;">
+                    <option value="1">Tất Cả</option>
+                    <option value="2">Admin</option>
+                    <option value="3">User</option>
+                </select>
+                <div class="d-flex">
+                    <label class="input-group-text" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                            <path
+                                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+                        </svg>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container" style="margin-top: 140px;">
+
+
+        <table class="table table-bordered ">
+            <thead>
+                <tr class="bg-info">
+                    <th scope="col" style="width: 5%">ID</th>
+                    <th scope="col" style="width: 20%">Tên Đăng Nhập</th>
+                    <th scope="col" style="width: 40%">Email</th>
+                    <th scope="col" style="width: 10%">Vai Trò</th>
+                    <th scope="col" style="width: 35%">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                
+                    <% for (let i = 0; i < listUser.length; i++) { %>
+                    <tr>
+                        <th scope="row" style="max-width: 150px;">
+                            <%= i + 1 %>
+                        </th>
+                        <td>
+                            <%= listUser[i].userName %>
+                        </td>
+                        <td>
+                            <%= listUser[i].email %>
+                        </td>
+                        <td>
+                            <%= listUser[i].role %>
+                        </td>
+                        <td style="max-width: 100px;">
+                            <a href="/user/edit/<%= listUser[i]._id %>">
+                                <button type="button" class="btn btn-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path
+                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd"
+                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg>
+
+                                </button>
+                            </a>
+                            <a href="/user/delete/<%= listUser[i]._id %>">
+                                <button type="button" class="btn btn-danger" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash3" viewBox="0 0 16 16">
+                                        <path
+                                            d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                    </svg>
+                                </button>
+                            </a>
+                            <a href="" style="text-decoration: none;">Xem Chi Tiết</a>
+                        </td>
+                    </tr>
+                    <% }; %>
+            </tbody>
+        </table>
+
+
+        <!-- thông tin thông số của trang -->
+        <div class="row justify-content-between">
+            <div class="col-12 col-sm-12 col-md-6">
+                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Đang xem 1
+                    đến 10
+                    trong tổng số 7 mục</div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 dataTables_pager" style="display: flex;">
+                <div class="dataTables_length col-8 col-sm-9 col-md-8" id="DataTables_Table_0_length">
+                    <label style="display: flex;">Xem <select style="width: 40px;" name="DataTables_Table_0_length"
+                            aria-controls="DataTables_Table_0"
+                            class="custom-select custom-select-sm form-control form-control-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> mục</label>
+                </div>
+                <div class="dataTables_paginate paging_simple_numbers col-2 col-sm-2 col-md-2"
+                    id="DataTables_Table_0_paginate">
+                    <ul class="pagination">
+                        <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a
+                                href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0"
+                                class="page-link">Trước</a>
+                        </li>
+                        <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0"
+                                data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0"
+                                data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                        <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#"
+                                aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0"
+                                class="page-link">Sau</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-lg-start bg-white text-muted" style="margin-top: 100px;">
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+            © 2023 Tác giả :
+            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">PH21007</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    </div>
+
+
+
+    <%- include('../inc/bottom') %>

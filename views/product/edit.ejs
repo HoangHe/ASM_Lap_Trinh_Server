@@ -1,0 +1,80 @@
+<%- include('../inc/top') %>
+
+
+    <div class="d-flex justify-content-start content fixed-top mt-5 align-items-center"
+        style="background-color: #F5F5F5; min-height: 70px;">
+        <div class="ms-2 d-flex align-items-center">
+            <h5 class="m-2">
+                <%= title %>
+            </h5>
+            <span class="ms-3 text-success fw-bold" class="alert alert-success" role="alert">
+                <%= msg %>
+            </span>
+        </div>
+
+    </div>
+
+
+    <form method="POST" action="" enctype="multipart/form-data" style="margin-top: 140px; border-radius: 1px; "
+        class="mx-5">
+
+        <div class="modal-body">
+            <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingName" placeholder="Tên Sản Phẩm" required
+                    value="<%= objProduct.name %>" name="nameProduct">
+                <label for="floatingName">Tên Sản Phẩm</label>
+            </div>
+            <div class="form-floating mb-2">
+                <select class="form-select" aria-label="Default select example" id="floatingLoai" placeholder="Loại"
+                    required name="category">
+                    <% listCategory.forEach( row=> {
+                        let selected = '';
+                        if(String(row._id) == String(objProduct.id_category)){
+                        selected = ' selected ';
+                        }
+                        %>
+                        <option <%=selected %> value="<%= row._id %>">
+                                <%= row.name %>
+                        </option>
+
+                        <% }) %>
+                </select>
+                <label for="floatingLoai">Loại</label>
+            </div>
+            <div class=" mb-2 d-flex" style="min-height: 200px;">
+                <input style=" max-height: 35px;" type="file" class="form-control" id="floatingImg"
+                    placeholder="Ảnh Đại Diện" name="editAvata" value="">
+                <img src="/<%=objProduct.avata %>" alt="anh" style="width: 200px; height: 200px;">
+            </div>
+            <div class="form-floating mb-2">
+                <textarea type="text" class="form-control" id="floatingMoTa" placeholder="Mô Tả" required
+                    name="description" style="height: 100px"><%= objProduct.description %></textarea>
+                <label for="floatingMoTa">Mô Tả</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="number" class="form-control" id="floatingGiaTien" placeholder="Giá Tiền" required
+                    value="<%= objProduct.price %>" name="price">
+                <label for="floatingGiaTien">Giá Tiền</label>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <a href="/product"  <% msg = '' %>><button type="button" class="btn btn-secondary">Trờ Lại</button></a>
+            <button type="submit" class="btn btn-primary ms-3">Lưu</button>
+        </div>
+    </form>
+
+
+    <footer class="text-center text-lg-start bg-white text-muted" style="margin-top: 300px;">
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+            © 2023 Tác giả :
+            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">PH21007</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    </div>
+
+
+
+    <%- include('../inc/bottom') %>
